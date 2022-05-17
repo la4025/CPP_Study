@@ -1,3 +1,3 @@
 ## List
 
-1. CPP_Study : ºÒ¸®¾ð(boolean) °ú ½Ç¼ö
+1. CPP_Study : ë¶ˆë¦¬ì–¸(boolean) ê³¼ ì‹¤ìˆ˜
