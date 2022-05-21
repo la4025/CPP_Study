@@ -22,7 +22,7 @@ bool test;
 int hp = 100;
 bool isInvincible = true;
 
-// #pragma region 구역을 만들고 최소화 시킬수 있다.
+// #pragma region 구역을 만들고 최소화 시킬 수 있다.
 // #pragma endregion 으로 닫는다.
 
 int main()
