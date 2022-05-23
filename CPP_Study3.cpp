@@ -6,6 +6,22 @@ using namespace std;
 
 unsigned char flag; // 부호를 없애야 >> 를 하더라도 부호비트가 딸려오지 않음
 
+
+// 한번 정해지면 절대 바뀌지 않을 값들
+// constant의 약자인 const를 붙임 (변수를 상수화 한다)
+// const를 붙이면 초기값을 반드시 지정해야 함
+
+// 그러면 const도 바뀌지 않는 읽기 전용인가?
+// .rodata?
+// 사실 C++ 표준에서 꼭 그렇게 하라는 말은 없다.
+// 그냥 컴파일러(VS) 마음이다.
+const int AIR = 0;
+const int STUN = 1;
+const int POLYMORPH = 2;
+const int INVINCIBLE = 3;
+
+
+
 // a[1]
 // a 라는 이름의 바구니를 할당하고 안에 1을 넣는다.
 int a = 1;
@@ -27,8 +43,25 @@ bool isInvincible = true;
 // #pragma region 구역을 만들고 최소화 시킬 수 있다.
 // #pragma endregion 으로 닫는다.
 
+// 전역 변수
+
+// [데이터영역]
+// .data (초기값 있는 경우)
+int a = 2;
+
+// .bss (초기값 없는 경우)
+int b = 2;
+
+// .rodata (읽기 전용 데이터)
+const char* msg = "Hello World";
+
 int main()
 {
+	// 지역 변수
+	// [스택 영역]
+	int c = 3;
+
+
 #pragma region 산술 연산
 	// 산술 연산자
 
@@ -108,7 +141,7 @@ int main()
 	// ||(or)
 	// a || b -> 둘 중 하나라도 1 이면 1, 둘다 0 이면 0
 	test = (hp > 0 || isInvincible == true);
-	!(hp <= 0 && isInvincible == false);
+	// !(hp <= 0 && isInvincible == false);
 
 #pragma endregion
 
@@ -145,15 +178,15 @@ int main()
 	// 0b0000 [무적][변이][스턴][공중부양]
 
 	// 무적 상태로 만든다.
-	flag = (1 << 3);
+	flag = (1 << INVINCIBLE);
 
 	// 변이 상태를 추가한다. (무적 + 변이)
-	flag |= (1 << 2);
+	flag |= (1 << POLYMORPH);
 
 	// 무적인지 확인하고 싶다? (다른 상태는 관심x)
 	// bitmask
 	// 필요없는 정보를 날려 확인하고싶은 정보만 가져온다.
-	bool invincible = ((flag & (1 << 3)) != 0);
+	bool invincible = ((flag & (1 << INVINCIBLE)) != 0);
 
 	// 무적이나 스턴 상태인지 확인하고 싶다?
 
