@@ -1,6 +1,30 @@
 #include <iostream>
 using namespace std;
 
+// const int를 사용할 때, 컴파일러가 최적화를 할 수 있다면, 메모리에 올리지않고 지정한 값으로 대체가 가능하지만,
+// 스택이나 다른곳에 두고 주소값을 참조하는 경우에는 변수가 메모리에 올라간다.(메모리 공간을 낭비한다.)
+const int SCISSORS = 1;
+const int ROCK = 2;
+const int PAPER = 3;
+
+// 숫자를 지정하지 않으면, 첫 값은 0부터 시작한다.
+// 그 다음 값들은 이전값 + 1 이 된다.
+// 가독성을 높이기위해서 제일 많이 사용한다.
+enum ENUM_SRP
+{
+	ENUM_SCISSORS = 1,
+	ENUM_ROCK,
+	ENUM_PAPER
+};
+// #이 붙는다 -> 전처리 지시문
+// #include <iostream> <- iostream 이라는 파일을 찾아서 해당 내용을 복붙해라.
+// 빌드 단계
+// 1) 전처리 2) 컴파일 3) 링크
+// 대부분 사용을 지양한다.
+
+#define DEFINE_SCISSORS 1
+#define DEFINE_TEST cout << "Hello World" << endl;
+
 int main()
 {
 	// 실습
@@ -11,7 +35,7 @@ int main()
 
 	cout << "숫자를 입력 해주세요." << endl;
 	cin >> input;
-
+		
 	for (i = 0; i < input; i++)
 	{
 		for (j = 0; j < input; j++)
@@ -70,6 +94,8 @@ int main()
 	// 컴퓨터는 랜덤을 모른다. rand()를 여러번 반복해서 보면 처음은 항상 같은 값이다.
 	// srand(time(0)) 과 같이 시드를 설정하여 다른값이 나오도록 유도한다.
 
+	DEFINE_TEST;
+
 	srand(time(0)); // 랜덤 시드 설정
 
 	int input, com;
@@ -82,10 +108,8 @@ int main()
 	{
 		com = (rand() % 3) + 1;
 
-		const int SCISSORS = 1;
-		const int ROCK = 2;
-		const int PAPER = 3;
 
+		
 
 
 		if (total == 0)
@@ -101,7 +125,7 @@ int main()
 
 		cin >> input;
 
-		if (input == SCISSORS)
+		if (input == SCISSORS) // = ENUM_SCISSORS, = DEFINE_SCISSORS
 		{
 			switch (com)
 			{
