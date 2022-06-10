@@ -69,4 +69,6 @@ int main()
 	PrintNumber(2);
 	PrintNumber(result);
 	PrintNumber(result2);
+
+	return 0;
 }
